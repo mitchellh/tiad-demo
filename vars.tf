@@ -1,5 +1,5 @@
 variable "ami" {
-    default = "ami-3acc7a52"
+    default = "ami-08faa660"
 }
 
 variable "key_name" {
@@ -12,5 +12,10 @@ variable "key_path" {
 
 variable "consul_servers" {
     default = "3"
+    description = "The number of Consul servers to launch."
+}
+
+variable "web_servers" {
+    default = "2"
     description = "The number of Consul servers to launch."
 }

@@ -1,8 +1,8 @@
-resource "aws_instance" "server" {
+resource "aws_instance" "consul_server" {
     ami = "${var.ami}"
-    instance_type = "m1.small"
+    instance_type = "m3.medium"
     key_name = "${var.key_name}"
-    count = "${var.servers}"
+    count = "${var.consul_servers}"
     security_groups = ["${aws_security_group.consul.name}"]
 
     connection {
@@ -17,7 +17,7 @@ resource "aws_instance" "server" {
 
     provisioner "remote-exec" {
         inline = [
-            "echo ${var.servers} > /tmp/consul-server-count",
+            "echo ${var.consul_servers} > /tmp/consul-server-count",
         ]
     }
 
