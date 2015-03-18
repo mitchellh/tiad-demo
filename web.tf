@@ -3,7 +3,10 @@ resource "aws_instance" "web" {
     instance_type = "m3.medium"
     count = "${var.web_servers}"
     key_name = "${var.key_name}"
-    security_groups = ["${aws_security_group.web.name}"]
+    security_groups = [
+        "${aws_security_group.consul.name}",
+        "${aws_security_group.web.name}",
+    ]
 
     connection {
         user = "ubuntu"
@@ -17,6 +20,13 @@ resource "aws_instance" "web" {
     }
 
     provisioner "remote-exec" {
+        inline = [
+            "echo ${var.atlas_app} > /tmp/atlas-app",
+            "echo ${var.atlas_token} > /tmp/atlas-token",
+        ]
+    }
+
+    provisioner "remote-exec" {
         scripts = [
             "${path.module}/scripts/install.sh",
             "${path.module}/scripts/agent.sh",
@@ -26,8 +36,13 @@ resource "aws_instance" "web" {
 
     // Setup the web server, install consul-template, and configure it all.
     provisioner "file" {
-        source = "${path.module}/scripts/upstart_web.conf"
+        source = "${path.module}/files/upstart_ct.conf"
         destination = "/tmp/upstart.conf"
+    }
+
+    provisioner "file" {
+        source = "${path.module}/files/web_content.ctmpl"
+        destination = "/tmp/web_content.ctmpl"
     }
 
     provisioner "remote-exec" {

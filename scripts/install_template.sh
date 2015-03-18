@@ -9,3 +9,6 @@ echo "Installing consul-template..."
 tar xvzf ct.tar.gz >/dev/null
 cd consul-template**
 sudo mv consul-template /usr/local/bin/consul-template
+
+echo "Installing Upstart service..."
+sudo mv /tmp/upstart.conf /etc/init/consul-template.conf

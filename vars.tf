@@ -19,3 +19,11 @@ variable "web_servers" {
     default = "2"
     description = "The number of Consul servers to launch."
 }
+
+variable "atlas_app" {
+    description = "The Atlas name of your infrastructure, ex. username/infra"
+}
+
+variable "atlas_token" {
+    description = "Atlas API token"
+}

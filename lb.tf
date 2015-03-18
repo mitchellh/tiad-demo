@@ -1,6 +1,7 @@
 resource "aws_elb" "lb" {
     name = "demo-lb"
     instances = ["${aws_instance.web.*.id}"]
+    availability_zones = ["us-east-1a"]
 
     listener {
         instance_port = 80

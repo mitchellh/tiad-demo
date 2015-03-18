@@ -18,6 +18,8 @@ resource "aws_instance" "consul_server" {
     provisioner "remote-exec" {
         inline = [
             "echo ${var.consul_servers} > /tmp/consul-server-count",
+            "echo ${var.atlas_app} > /tmp/atlas-app",
+            "echo ${var.atlas_token} > /tmp/atlas-token",
         ]
     }
 

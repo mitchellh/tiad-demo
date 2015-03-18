@@ -1,0 +1,10 @@
+<html>
+<head>
+    <title>TIAD Demo</title>
+</head>
+<body>
+    <div class="content">
+        {{key "tiad/content"}}
+    </div>
+</body>
+</html>
