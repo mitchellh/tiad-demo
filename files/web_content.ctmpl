@@ -1,6 +1,15 @@
 <html>
 <head>
     <title>TIAD Demo</title>
+    <style type="text/css">
+        .content {
+            text-align: center;
+            font-size: 64px;
+            font-weight: bold;
+            font-family: Sans-serif;
+            margin-top: 100px;
+        }
+    </style>
 </head>
 <body>
     <div class="content">

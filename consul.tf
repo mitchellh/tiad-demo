@@ -58,4 +58,13 @@ resource "aws_security_group" "consul" {
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
+
+    // So we can set keys directly. Not recommended in production, but
+    // good for a demo.
+    ingress {
+        from_port = 8500
+        to_port = 8500
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
 }
